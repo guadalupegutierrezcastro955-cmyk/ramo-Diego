@@ -12,7 +12,7 @@
       background: linear-gradient(135deg, #000, #400); 
       color: white;
       text-align: center;
-      /* overflow: hidden; (Lo quitamos para que el scroll no sea un problema) */
+      /* Lo quitamos para que el scroll no sea un problema: overflow: hidden; */
     }
     h1 {
       font-size: 2.2rem;
@@ -30,16 +30,13 @@
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       margin-top: 30px;
-      /* Opcional: una leve rotación al papel completo */
-      transform: rotate(2deg); 
+      transform: rotate(2deg); /* Una leve rotación al papel completo */
     }
 
     .gallery {
-      /* Ajuste para centrar el grupo completo */
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      /* Reducimos el espacio entre ellos */
       gap: 10px; 
       margin-top: 40px;
       flex-wrap: wrap;
@@ -49,9 +46,7 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
-      
-      /* CLAVE PARA EL EFECTO RAMO: Los superpone a la izquierda */
-      margin-left: -50px; 
+      margin-left: -50px; /* CLAVE PARA EL EFECTO RAMO: Los superpone a la izquierda */
     }
     .gallery img {
       width: 220px;
@@ -69,6 +64,30 @@
     .carro-2 { transform: rotate(4deg); margin-top: 20px; }
     .carro-3 { transform: rotate(-5deg); margin-top: -10px; }
     .carro-4 { transform: rotate(10deg); margin-top: 15px; }
+
+    /* ESTILO PARA EL EFECTO DE CONFETI/PARTÍCULAS */
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Lo pone detrás de los carros */
+      pointer-events: none;
+    }
+    .confetti span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #ffcc00; /* Color amarillo/oro */
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+    /* FIN ESTILO CONFETI */
 
     .heart-button {
       display: inline-block;
@@ -110,5 +129,43 @@
   </div>
 
   <a href="#" class="heart-button">♥️</a>
+
+  <audio id="music" loop autoplay>
+    <source src="https://baque2005.github.io/public-files/2025/09/bensound-memories.mp3" type="audio/mp3">
+    Tu navegador no soporta la música.
+  </audio>
+
+  <div class="confetti"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const confettiContainer = document.querySelector('.confetti');
+      const music = document.getElementById('music');
+      
+      // Intentar reproducir la música (muchos navegadores lo bloquean hasta un clic)
+      music.play().catch(() => {
+        // Poner un botón para reproducir si falla el autoplay
+        const playButton = document.createElement('button');
+        playButton.textContent = 'Toca aquí para iniciar la sorpresa';
+        playButton.style.cssText = 'position: fixed; top: 10px; left: 50%; transform: translateX(-50%); padding: 10px; background-color: #ff3366; color: white; border: none; border-radius: 5px; cursor: pointer; z-index: 1000;';
+        document.body.appendChild(playButton);
+
+        playButton.addEventListener('click', () => {
+          music.play();
+          playButton.remove();
+        });
+      });
+
+      // Generador de partículas
+      for (let i = 0; i < 50; i++) {
+        const span = document.createElement('span');
+        span.style.left = ${Math.random() * 100}vw;
+        span.style.animationDuration = ${Math.random() * 3 + 2}s; // 2 a 5 segundos
+        span.style.animationDelay = ${Math.random() * 5}s;
+        span.style.transform = translateY(-${Math.random() * 100}vh);
+        confettiContainer.appendChild(span);
+      }
+    });
+  </script>
 </body>
 </html>
