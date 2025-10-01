@@ -12,7 +12,7 @@
       background: linear-gradient(135deg, #000, #400); 
       color: white;
       text-align: center;
-      overflow: hidden;
+      /* overflow: hidden; (Lo quitamos para que el scroll no sea un problema) */
     }
     h1 {
       font-size: 2.2rem;
@@ -21,6 +21,19 @@
       color: white;
       font-family: "Segoe Script", cursive;
     }
+    
+    /* ESTILO PARA SIMULAR EL PAPEL KRAFT O PAPEL DE RAMO */
+    .ramo-fondo {
+      display: inline-block;
+      padding: 50px 70px; /* Espacio alrededor del ramo */
+      background-color: #8B7355; /* Color marrón similar al papel kraft */
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-top: 30px;
+      /* Opcional: una leve rotación al papel completo */
+      transform: rotate(2deg); 
+    }
+
     .gallery {
       /* Ajuste para centrar el grupo completo */
       display: flex;
@@ -52,7 +65,6 @@
       transform: scale(1.1);
     }
     /* CLASES PARA ROTAR CADA ELEMENTO INDIVIDUALMENTE */
-    /* Esto da el efecto de que están colocados a mano */
     .carro-1 { transform: rotate(-8deg); }
     .carro-2 { transform: rotate(4deg); margin-top: 20px; }
     .carro-3 { transform: rotate(-5deg); margin-top: -10px; }
@@ -77,23 +89,24 @@
 <body>
   <h1>𝓕𝓮𝓵𝓲𝔃 30 𝓭𝓮 𝓼𝓮𝓹𝓽𝓲𝓮𝓶𝓫𝓻𝓮 𝓓𝓲𝓮𝓰𝓸 ♥️</h1>
 
-  <div class="gallery">
-    <div class="gallery-item carro-1">
-      <img src="./carro1.jpg" alt="Hot Wheels 1">
-    </div>
+  <div class="ramo-fondo">
+    <div class="gallery">
+      <div class="gallery-item carro-1">
+        <img src="./carro1.jpg" alt="Hot Wheels 1">
+      </div>
 
-    <div class="gallery-item carro-2">
-      <img src="./carro2.jpg" alt="Hot Wheels 2">
-    </div>
+      <div class="gallery-item carro-2">
+        <img src="./carro2.jpg" alt="Hot Wheels 2">
+      </div>
 
-    <div class="gallery-item carro-3">
-      <img src="./carro3.jpg" alt="Hot Wheels 3">
-    </div>
+      <div class="gallery-item carro-3">
+        <img src="./carro3.jpg" alt="Hot Wheels 3">
+      </div>
 
-    <div class="gallery-item carro-4">
-      <img src="./carro6.jpg" alt="Hot Wheels 6">
+      <div class="gallery-item carro-4">
+        <img src="./carro6.jpg" alt="Hot Wheels 6">
+      </div>
     </div>
-
   </div>
 
   <a href="#" class="heart-button">♥️</a>
